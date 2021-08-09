@@ -1,0 +1,267 @@
+.Product{
+    padding: 1px ;
+    margin: auto;
+    margin-top: 10px;
+    flex:25%;
+    max-width: 25%;  
+    color:black;
+    width: auto;  
+    display: flex;  
+    align-items: center;
+    flex-direction: column;
+    background-color: white;    
+    padding: 1px;
+  }
+  
+  .Product img{
+    border-style: solid;  
+    border-color: white;
+    margin-top: 2px;
+    vertical-align: middle;
+    width: 100%;    
+  }
+  
+  .Description{
+    position: relative;
+    padding: 1px;  
+    color: black;
+    top:50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+  }
+
+
+
+  /* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+    .Product {
+      flex:40%;
+      max-width: 40%;  
+    }
+    .Product .hvr-wobble-to-top-right {
+      z-index: 2;
+      top:50px;
+      left:5.7rem;
+      position: relative;
+      color: white;
+      background-color: black;
+      opacity: 0.5;
+      /*border-radius: 50%;*/
+      height: 30px;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin:1px;  
+      padding: 1px;
+      
+    }
+    
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .Product {
+      flex:45%;
+      max-width: 45%;  
+    }
+    .Product .hvr-wobble-to-top-right {
+      z-index: 2;
+      top:35px;
+      left:3rem;
+      position: relative;
+      color: white;
+      background-color: black;
+      /*border-radius: 100%;*/
+      height: 30px;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin:1px;  
+      padding: 1px;
+      
+    }
+    
+  }
+
+
+  .Product figure:hover img {
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+
+.hvr-wobble-to-top-right {
+  z-index: 2;
+  top:35px;
+  left:7rem;
+  position: relative;
+  color: white;
+  background-color: black;
+  /*border-radius: 50%;*/
+  height: 30px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  margin:1px;  
+  padding: 1px 1px 8px 3px;
+  
+}
+
+#Product:hover .hvr-wobble-to-top-right  {
+	-webkit-animation-name: hvr-wobble-to-top-right;
+  animation-name: hvr-wobble-to-top-right;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+
+
+.hvr-bubble-float-top {
+  visibility: hidden;
+  background-color: grey;
+  color: white;
+  width:100%;
+  padding:5px;
+  margin:2px;
+  cursor:pointer;
+  border-style: none;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  
+}
+
+#Product:hover .hvr-bubble-float-top {
+  visibility:visible;
+  -webkit-transform: translateY(5px);
+  transform: translateY(5px);
+  
+}
+
+
+
+
+
+
+
+
+/* Wobble To Top Right */
+@-webkit-keyframes hvr-wobble-to-top-right {
+  16.65% {
+    -webkit-transform: translate(8px, -8px);
+    transform: translate(8px, -8px);
+  }
+  33.3% {
+    -webkit-transform: translate(-6px, 6px);
+    transform: translate(-6px, 6px);
+  }
+  49.95% {
+    -webkit-transform: translate(4px, -4px);
+    transform: translate(4px, -4px);
+  }
+  66.6% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+  83.25% {
+    -webkit-transform: translate(1px, -1px);
+    transform: translate(1px, -1px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+@keyframes hvr-wobble-to-top-right {
+  16.65% {
+    -webkit-transform: translate(8px, -8px);
+    transform: translate(8px, -8px);
+  }
+  33.3% {
+    -webkit-transform: translate(-6px, 6px);
+    transform: translate(-6px, 6px);
+  }
+  49.95% {
+    -webkit-transform: translate(4px, -4px);
+    transform: translate(4px, -4px);
+  }
+  66.6% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+  83.25% {
+    -webkit-transform: translate(1px, -1px);
+    transform: translate(1px, -1px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+.hvr-wobble-to-top-right {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+/* Bubble Float Top */
+.hvr-bubble-float-top {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 2px blue;
+  position: relative;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top:before {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  left: calc(50% - 10px);
+  top: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent transparent transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+/*.hvr-bubble-float-top:hover, .hvr-bubble-float-top:focus, .hvr-bubble-float-top:active {
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}*/
+.hvr-bubble-float-top:hover:before, .hvr-bubble-float-top:focus:before, .hvr-bubble-float-top:active:before {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}

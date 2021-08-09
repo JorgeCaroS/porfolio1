@@ -1,0 +1,51 @@
+.PreviewMain{
+    display: flex;
+    align-items:  center;    
+    flex-direction: column;
+    
+
+}
+
+.previewMain{
+    
+    margin:auto;
+    padding:auto;
+    
+}
+
+
+.PreviewMain figure:hover img {
+	
+    opacity: 1;
+	-webkit-animation: flash 1.5s;
+    animation: flash 1.5s;
+    
+}
+
+.previewMainImage{
+    height: 500px;
+    display: flex;
+    align-items:  center;
+    flex-direction: column;
+    padding: 10px; 
+    margin:10px;
+
+}
+
+
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
