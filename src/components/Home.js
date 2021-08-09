@@ -25,6 +25,7 @@ import Carousel1 from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { MyContext } from "../context/MyContext";
 import { CSSTransition } from 'react-transition-group';
+import staticdata from "./staticdata";
 
 export default function Home({
   name,
@@ -74,47 +75,38 @@ export default function Home({
 
   useEffect(() => {
     async function fetchData() {
-      const result = await fetch("http://localhost:3000/api/productos/", {
-        method: "get",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          Authorization: "Basic " + btoa("devops2021*:devops2021*"),
-          "Content-Type": "application/json",
-        },
-      });
-      const dataNoFilter = await result.json();
-      const data = await dataNoFilter;
+      
+      const data = await staticdata;
   
       //// Loop for hide products with no units/////
   
-      for (var i2 = 0; i2 < data.length; i2++) {
-        for (var j2 = 0; j2 < data[i2].skus.length; j2++) {        
-          for (var k2 = data[i2].skus[j2].shops.length - 1; k2 >= 0; k2--) {
+      for (var i2 = 0; i2 < staticdata.length; i2++) {
+        for (var j2 = 0; j2 < staticdata[i2].skus.length; j2++) {        
+          for (var k2 = staticdata[i2].skus[j2].shops.length - 1; k2 >= 0; k2--) {
             if (
-              data[i2].skus[j2].shops[k2].store !== "015" &&
-              data[i2].skus[j2].shops[k2].store !== "022" &&
-              data[i2].skus[j2].shops[k2].store !== "005" 
+              staticdata[i2].skus[j2].shops[k2].store !== "015" &&
+              staticdata[i2].skus[j2].shops[k2].store !== "022" &&
+              staticdata[i2].skus[j2].shops[k2].store !== "005" 
               
             ) {
-              var elLenght = data[i2].skus[j2].shops.splice(k2, 1).length;
+              var elLenght = staticdata[i2].skus[j2].shops.splice(k2, 1).length;
               
             }
           }
         }
       }
   
-      for (var i = 0; i < data.length; i++) {
-        for (var j = 0; j < data[i].skus.length; j++) {
-          for (var k = data[i].skus[j].shops.length - 1; k >= 0; k--) {
-            if (data[i].skus[j].shops[k].quantity === 0) {
-              var elLenght = data[i].skus[j].shops.splice(k, 1).length;
-              if (data[i].skus[j].shops.length === 0) {
-                data[i].skus.splice(j, 1);
+      for (var i = 0; i < staticdata.length; i++) {
+        for (var j = 0; j < staticdata[i].skus.length; j++) {
+          for (var k = staticdata[i].skus[j].shops.length - 1; k >= 0; k--) {
+            if (staticdata[i].skus[j].shops[k].quantity === 0) {
+              var elLenght = staticdata[i].skus[j].shops.splice(k, 1).length;
+              if (staticdata[i].skus[j].shops.length === 0) {
+                staticdata[i].skus.splice(j, 1);
                 j--;
               }
-              if(data[i].skus.length === 0 ){
-                data.splice(k,1)
+              if(staticdata[i].skus.length === 0 ){
+                staticdata.splice(k,1)
               }
                           
             }
@@ -136,27 +128,18 @@ export default function Home({
         return comparison;
       }
 
-      data.sort(sortUp);
+      staticdata.sort(sortUp);
 
 
       
-      setColecciones([...new Set (data.map((producto) => producto.collectionname))]);
+      setColecciones([...new Set (staticdata.map((producto) => producto.collectionname))]);
       
-      var ultimaColeccion = ([...new Set (data.map((producto) => producto.collectionname))][0])
+      var ultimaColeccion = ([...new Set (staticdata.map((producto) => producto.collectionname))][0])
       
-       for (var i3 = 0; i3 < data.length; i3++) {           
-        if(data[i3].collectionname !== ultimaColeccion){         
-          var elLenght1 = data.splice(i3, 1);
-          i3--;
-        }
-      } 
-  
-  
       
-      setProducts(data);
+      console.log(staticdata)
       
-  
-  
+      setProducts(staticdata);
       setLoading1(false);
     }
     fetchData();
@@ -284,7 +267,7 @@ export default function Home({
             <img src={Banner2} />
           </div>
           <div className="banner-item3">
-            <img src={"http://localhost:3000/image/BannerOversize1.jpg"} />
+            <img src={Banner3} />
           </div>
           
           {/* <div className="banner-video1">

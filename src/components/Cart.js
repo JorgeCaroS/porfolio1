@@ -1,6 +1,7 @@
 import { MyContext } from "../context/MyContext";
 import { useState, useEffect, useContext } from "react";
 import { useHistory} from "react-router-dom";
+import Imagen23062_01 from "../images/Jeans/23062_01.jpg";
 
 export default function Cart() {
   const { cart, setCart } = useContext(MyContext); 
@@ -33,7 +34,7 @@ export default function Cart() {
   if(cart){
     var total = 0;
     for (var i = 0; i < cart.length; i++) {
-     total = total + (cart[i].price - (cart[i].price * cart[i].discount.value));
+     total = total + (cart[i].price.$numberInt - (cart[i].price.$numberInt * cart[i].discount.value.$numberDouble));
    } 
    if (cart.length === 0) {
     return null;
@@ -71,9 +72,7 @@ export default function Cart() {
           <div>
             <img
               className="cart-single-image"
-              src={
-                "http://localhost:3000/image/" + producto.reference + "_01.jpg"
-              }
+              src={Imagen23062_01}
             />
           </div>
           <div className="cart-single-item-desc">
@@ -83,7 +82,7 @@ export default function Cart() {
             <div className="cart-single-desc">Talla {producto.size} </div>
             <div className="cart-single-desc-price">
               {/*formatterPeso.format(producto.price)*/}
-              {formatterPeso.format(producto.price - producto.price *  producto.discount.value )}
+              {formatterPeso.format(producto.price.$numberInt - producto.price.$numberInt *  producto.discount.value.$numberDouble )}
              
             </div>
           </div>

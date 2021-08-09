@@ -10,13 +10,14 @@ import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Logo from "../images/logokancan.png";
 import { CSSTransition } from 'react-transition-group';
+import Imagen23062_01 from "../images/Jeans/23062_01.jpg";
 
 export default function Preview() {
   const history = useHistory();
   const [existencias, setExistencias] = useState();  
  // const {productSelected, setProductSelected} = useContext(MyContext); 
   const [productSelected1,  setProductSelected1] = useState([]);   
-  const [mainImage, setMainImage] = useState("http://localhost:3000/image/" + JSON.parse(localStorage.getItem("MySelected")).reference + "_01.jpg");    
+  const [mainImage, setMainImage] = useState(Imagen23062_01);    
   const [tiendas, setTiendas] = useState([]);
   const [productos, setProductos] = useState([]);
   const [filteredByColor, setFilteredByColor] = useState([]);
@@ -165,7 +166,7 @@ export default function Preview() {
     let currentIndex = sizesByColor.indexOf(thisSize);
     let currentSizeArray =shopsByColor[currentIndex];
     setExistencias(
-      currentSizeArray.reduce((sum, { quantity }) => sum + quantity, 0)
+     10
     );
       
     if(colorSelected.length >0 && e.target.innerText.length >0 ){     
@@ -226,7 +227,7 @@ export default function Preview() {
   });
 
   function handleClick(e){     
-    setMainImage("http://localhost:3000/image/" + JSON.parse(localStorage.getItem("MySelected")).reference+ e.target.id);
+    setMainImage(Imagen23062_01);
     
   }
 
@@ -337,8 +338,7 @@ export default function Preview() {
           className={classNamePreviewGallery2}
           id="_02.jpg"
           width="120px"
-          src={
-            "http://localhost:3000/image/" + productSelected1.reference +"_02.jpg"}
+          src={Imagen23062_01}
           alt={productSelected1.name}
           onClick={handleClick}
           onError={handleError2}
@@ -347,8 +347,7 @@ export default function Preview() {
           className={classNamePreviewGallery3}
           id="_03.jpg"
           width="120px"
-          src={
-            "http://localhost:3000/image/" +productSelected1.reference + "_03.jpg" }
+          src={Imagen23062_01}
           alt={productSelected1.name}
           onClick={handleClick}
           onError={handleError3}
@@ -357,8 +356,7 @@ export default function Preview() {
           className={classNamePreviewGallery4}
           id="_04.jpg"
           width="120px"
-          src={
-            "http://localhost:3000/image/" +productSelected1.reference + "_04.jpg" }
+          src={Imagen23062_01 }
           alt={productSelected1.name}
           onClick={handleClick}
           onError={handleError4}
@@ -367,8 +365,7 @@ export default function Preview() {
           className={classNamePreviewGallery5}
           id="_05.jpg"
           width="120px"
-          src={
-            "http://localhost:3000/image/" +productSelected1.reference +"_05.jpg"  }
+          src={Imagen23062_01 }
           alt={productSelected1.name}
           onClick={handleClick}
           onError={handleError5}
@@ -381,8 +378,8 @@ export default function Preview() {
             <p className="preview-reference-title">Ref {productSelected1.reference}</p>
             
             <div className="preview-prices">
-            <p className="preview-reference-price"> {formatterPeso.format(productSelected1.price)}</p>            
-            <p className="preview-reference-price-discount"> {formatterPeso.format(productSelected1.price - productSelected1.price *  productSelected1.discount.value)}</p>
+            <p className="preview-reference-price"> {formatterPeso.format(productSelected1.price.$numberInt)}</p>            
+            <p className="preview-reference-price-discount"> {formatterPeso.format(productSelected1.price.$numberInt - productSelected1.price.$numberInt *  productSelected1.discount.value.$numberDouble)}</p>
             </div>
           </div>
 

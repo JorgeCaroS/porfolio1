@@ -5,6 +5,8 @@ import MediosPago from "../images/MediosPago.jpg";
 import CarouselTop from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {MyContext} from "../context/MyContext";
+import staticdata from "./staticdata";
+import Imagen23062_01 from "../images/Jeans/23062_01.jpg";
 
 
 
@@ -34,13 +36,15 @@ export default function MainHeader() {
     if (
       product.category.toLowerCase().includes(search) ||
       product.subcategory.toLowerCase().includes(search) ||
-      ((product.price)-(product.price * product.discount.value)).toString().includes(search) ||
+      ((product.price)-(product.price.$numberInt * product.discount.value)).toString().includes(search) ||
       product.reference.toLowerCase().includes(search)
     ) {
       return product;
     }
   });
 
+
+  
   const formatterPeso = new Intl.NumberFormat('es-CO', {
     style: 'currency',
     currency: 'COP',
@@ -104,7 +108,7 @@ export default function MainHeader() {
          "Content-Type": "application/json", 
       },});
       const dataNoFilter = await result.json();
-      const data = await dataNoFilter;
+      const data = staticdata;
       for (var j2 = 0; j2 < data.skus.length; j2++) {
         for (var k2 = data.skus[j2].shops.length - 1; k2 >= 0; k2--) {
           if (
@@ -219,12 +223,12 @@ export default function MainHeader() {
                 <div  className="singleDescFilter">              
                   {product.category} <br></br>
                   {product.subcategory}<br></br>                  
-                  {formatterPeso.format(product.price - product.price *  product.discount.value)}
+                  {formatterPeso.format(product.price.$numberInt - product.price.$numberInt *  product.discount.value.$numberDouble)}
                   <br></br>
                   <button id={product._id} onClick={handleThumb} className="thumb-button">Ver</button>
                 </div>
                   <div  className="singleImgFilter">  
-                   <img src={"http://localhost:3000/image/"+product.reference+"_01.jpg"} />              
+                   <img src={Imagen23062_01} />              
                    {/* <img src={product.images[0]} />  */}
                   </div>
                   

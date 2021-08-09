@@ -7,6 +7,7 @@ import MainHeader from "./MainHeader";
 import Cart from "./Cart";
 import { MyContext } from "../context/MyContext";
 import { CSSTransition } from 'react-transition-group';
+import staticdata from "./staticdata";
 
 
 
@@ -176,25 +177,13 @@ export default function Shop({
 
 
    useEffect(() => {
-    async function fetchData() {
-      const result = await fetch("http://localhost:3000/api/productos/", {
-        method: "get",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          Authorization: "Basic " + btoa("devops2021*:devops2021*"),
-          "Content-Type": "application/json",
-        },
-      });
-      const dataNoFilter = await result.json();
-      const data = await dataNoFilter;
+     function fetchData() {
+     
+      const data =  staticdata ;
   
       //// Loop for hide products with no units/////
   
       for (var i2 = 0; i2 < data.length; i2++) {
-       
-  
-        
         
         for (var j2 = 0; j2 < data[i2].skus.length; j2++) {        
           for (var k2 = data[i2].skus[j2].shops.length - 1; k2 >= 0; k2--) {
@@ -219,23 +208,17 @@ export default function Shop({
               if (data[i].skus[j].shops.length === 0) {
                 data[i].skus.splice(j, 1);                
               j--;
-              
               }
               if(data[i].skus.length === 0 ){
                 data.splice(k,1)
               }
-              
-            
             }
           }
         }
       }
   
-     
-      setProducts(data);
-      //console.log(data)
-  
-  
+      console.log(data) 
+      setProducts(data);      
       setLoading1(false);
     }
     fetchData();
@@ -247,47 +230,14 @@ export default function Shop({
 
   async function handleClick(mykey){
 
-    const result = await fetch("http://localhost:3000/api/productos/"+mykey,{
-        method: "get",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",           
-          "Authorization": "Basic "+btoa("devops2021*:devops2021*"),
-         "Content-Type": "application/json", 
-      },});
-      const dataNoFilter = await result.json();
-      const data = await dataNoFilter;     
+    
+      let data =  staticdata;   
       
-        for (var j2 = 0; j2 < data.skus.length; j2++) {
-          for (var k2 = data.skus[j2].shops.length - 1; k2 >= 0; k2--) {
-            if (
-              data.skus[j2].shops[k2].store !== "015" &&
-              data.skus[j2].shops[k2].store !== "022" &&
-              data.skus[j2].shops[k2].store !== "005"
-            ) {
-              var elLenght = data.skus[j2].shops.splice(k2, 1).length;
-              //var elLenght = data[i2].skus[j2].shops.splice(k2, 1).length;
-            }
-          
-        }
-      }
       
-        for (var j = 0; j < data.skus.length; j++) {
-          for (var k = data.skus[j].shops.length - 1; k >= 0; k--) {
-            if (data.skus[j].shops[k].quantity === 0) {
-              var elLenght = data.skus[j].shops.splice(k, 1).length;
-              if (data.skus[j].shops.length === 0) {
-                data.skus.splice(j, 1);
-                j--;
-                
-              }
-              
-            }          
-        }
-      }
+     
       
-      setProductSelected(data);
-      localStorage.setItem("MySelected",JSON.stringify(data))
+      setProductSelected(data[0]);
+      localStorage.setItem("MySelected",JSON.stringify(data[0]))
         history.push({
           pathname: `/inicio/producto/${data.reference}`
         })
@@ -308,7 +258,7 @@ export default function Shop({
     price,
     discount
   ) {
-    setMainImage("http://localhost:3000/image/"+reference+"_01.jpg")
+    setMainImage("./images/Jeans"+reference+"_01.jpg")
     setClicked({ reference });
     setURL({ url });
     setSkus(skus);    
@@ -667,7 +617,7 @@ export default function Shop({
               reference={producto.reference}
               article={producto.article}
               name={producto.name}
-              price={producto.price}
+              price={producto.price.$numberInt}
               description={producto.description}
               discount={producto.discount}
               skus={producto.skus}

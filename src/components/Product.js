@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import {MyContext} from "../context/MyContext";
 import { useHistory } from "react-router-dom";
+import Imagen23062_01 from "../images/Jeans/23062_01.jpg";
+import Imagen23062_02 from "../images/Jeans/23062_02.jpg";
 
 export default function Product({
   mykey,
@@ -262,9 +264,9 @@ export default function Product({
       </div>
       
       <span onClick={setClicked1} id="product-eye" className="material-icons md-dark">visibility</span>    
-        <img id={mykey}  onClick={setClicked} className="product-main-img"src={"http://localhost:3000/image/"+reference+"_01.jpg"} alt={name} 
-        onMouseOver={e => (e.currentTarget.src = "http://localhost:3000/image/"+reference+"_02.jpg")}
-        onMouseOut={e => (e.currentTarget.src = "http://localhost:3000/image/"+reference+"_01.jpg")} 
+        <img id={mykey}  onClick={setClicked} className="product-main-img"src={Imagen23062_01} alt={name} 
+        onMouseOver={e => (e.currentTarget.src = Imagen23062_02)}
+        onMouseOut={e => (e.currentTarget.src = Imagen23062_01)} 
        />
 
          
@@ -279,8 +281,9 @@ export default function Product({
         
       </figure>
       <div className="price-container">
-        <h3 className="product-price">{formatterPeso.format(price)}</h3>  
-        <p className="product-price-discount"> {formatterPeso.format(price - price *  discount.value)}</p> 
+       
+        <h3 className="product-price">{formatterPeso.format(price)}</h3>          
+        <p className="product-price-discount"> {formatterPeso.format(price - price *  discount.value.$numberDouble)}</p> 
         </div>   
      
       <br></br>

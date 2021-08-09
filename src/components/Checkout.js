@@ -9,7 +9,7 @@ import Loader from "react-loader-spinner";
 import Logo from "../images/logokancan.png";
 import moment from "moment";
 import { CSSTransition } from 'react-transition-group';
-
+import Imagen23062_01 from "../images/Jeans/23062_01.jpg";
 
 export default function Checkout() {
   const history = useHistory();
@@ -56,7 +56,7 @@ export default function Checkout() {
     if (cart) {
       var total = 0;
       for (var i = 0; i < cart.length; i++) {
-        total = total + (cart[i].price - cart[i].price * cart[i].discount.value);
+        total = total + (cart[i].price.$numberInt - cart[i].price.$numberInt * cart[i].discount.value.$numberDouble);
       }
       setTotal1(total)
       
@@ -214,10 +214,7 @@ useEffect(() => {
 
  
 
-  var myKey = crypto.MD5(
-    "1fgYT1jebBYngNpKYJ9IuZwhd1~663558~TestPayU1~20000~COP"
-  );
-  var myAPI = "pub_test_JvohDqaePXFJm6PtXHAfr1ZMWX384d5p";
+
 
   const formatterPeso = new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -311,39 +308,6 @@ useEffect(() => {
 
   
 
-  async function handlePaySistecredito() {      
-      
-     if(ciudadClicked.length === 0){
-      return setErrorClassName("checkout-error")
-    }
-    
-    const res = await fetch("https://api.credinet.co/paymentpublic/StartCredit", {
-      method: "post",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        SCLocation: "0,0",
-        country: "co",
-        SCOrigen: "Staging",
-        "Ocp-Apim-Subscription-Key":"42fee88913d34e3b8c2c5ae45847bc32",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        idDocument: usuario.cedula,
-        //idDocument: "10171361681",
-        typeDocument: "CC",
-        transactionDate: moment().format(),
-        valueToPaid: valorEnvio[1] && total1 < 200000 ?  (parseInt(total1)+parseInt(valorEnvio[1])): valorEnvio[1] && total1 > 200000 ? (parseInt(total1)):total1,       
-        vendorId: "60f096dd4fec8c0001414468",
-        storeId: "60f096ddcb1a6000015698bd",
-        orderId: referenceCode,
-        responseUrl: "http://ec2-23-22-55-137.compute-1.amazonaws.com:3000/sistecredito"  
-      }),
-    });
-
-    const data = await res.json();       
-    window.open(data.data.urlToRedirect+"?transactionId="+data.data.transactionId,"width=548","height=325");    
-  }
 
   function handleError(){
     setErrorClassName("hidden");
@@ -368,16 +332,7 @@ useEffect(() => {
     setPayButtonClassName("payButton")
   }
 
-  function handlePay2(){
-    
-    if(payMethod === "Wompi"){
-      handlePay();
-    }else{
-      if(payMethod === "Sistecredito"){
-        handlePaySistecredito();
-      }
-    }
-  }
+  
 
   console.log(politicaCheck)
 
@@ -447,7 +402,7 @@ useEffect(() => {
           {cart.map((producto, index) => (
             <div key={Math.random(0, 1000)} className="cart-single-item">
               <div>
-                <img className="cart-single-image" src={"http://localhost:3000/image/" + producto.reference +"_01.jpg"}/>
+                <img className="cart-single-image" src={Imagen23062_01}/>
               </div>
               <div className="cart-single-item-desc">
                 <div className="cart-single-desc">{producto.reference} </div>
@@ -457,7 +412,7 @@ useEffect(() => {
                 <div className="cart-single-desc-price">
                   {/*formatterPeso.format(producto.price)*/}
                   {formatterPeso.format(
-                    producto.price - producto.price * producto.discount.value
+                    producto.price.$numberInt - producto.price.$numberInt * producto.discount.value.$numberDouble
                   )}
                 </div>
               </div>
@@ -533,7 +488,7 @@ useEffect(() => {
             target="POPUPW"
             onSubmit={ciudadClicked.length>0 && payMethod === "Wompi" && valorEnvio != "Intenta otra ubicación" ? POPUPW : ciudadClicked.length>0 && payMethod === "Sistecredito" ? abortPay2 : abortPay}             
           >
-            <input type="hidden" name="public-key" value={myAPI} />
+            <input type="hidden" name="public-key"  />
             <input type="hidden" name="currency" value="COP" />
             <input type="hidden" name="amount-in-cents" value={valorEnvio[1] && total1 < 200000 ?  (parseInt(total1)+parseInt(valorEnvio[1])+"00"): valorEnvio[1] && total1 > 200000 ? (parseInt(total1)+"00"):null} />
             <input
@@ -563,7 +518,7 @@ useEffect(() => {
             <label for="cbox2">Sistecredito</label>  
             </div>
 
-            <button className={payButtonClassName} onClick={handlePay2} type="submit">
+            <button className={payButtonClassName}  type="submit">
               Pagar
             </button>
 

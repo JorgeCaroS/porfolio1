@@ -46,10 +46,11 @@ export default function Account() {
   }
 
   useEffect(async () => {
-    if (localStorage.getItem("MyUser")) {
+    setLoading1(false);
+   /*  if (localStorage.getItem("MyUser")) {
       setUser(JSON.parse(localStorage.getItem("MyUser")));
-    }
-    async function fetchData() {
+    } */
+   /*  async function fetchData() {
       const result = await fetch(
         "http://localhost:3000/api/users/" +
           JSON.parse(localStorage.getItem("MyUser")).mail,
@@ -76,10 +77,10 @@ export default function Account() {
     }
     if (user) {
       fetchData();
-    }
+    } */
   }, []);
 
-  useEffect(async () => {
+  /* useEffect(async () => {
     if (user.rol === "admin") {
       async function fetchData1() {
         const result = await fetch("http://localhost:3000/api/pedidos/", {
@@ -99,12 +100,11 @@ export default function Account() {
         return setPedidos(data);
       }
       fetchData1();
-    } else {
-      /*console.log("Rol Cliente");*/
+    } else {      
       setLoading1(false);
     }
     
-  }, []);
+  }, []); */
   
   function logOut() {
     localStorage.removeItem("MyUser", JSON.stringify());

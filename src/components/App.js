@@ -15,6 +15,7 @@ import Stores from "./Stores";
 import Order from "./Order";
 import Confirmation from "./Confirmation";
 import SizeGuide from "./SizeGuide";
+import staticdata from "./staticdata";
 import { MyContext } from "../context/MyContext";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -48,6 +49,10 @@ export default function App() {
 
 
 
+
+
+
+
   useEffect(() => {
     if (localStorage.getItem("MyCart")) {
       setCart(JSON.parse(localStorage.getItem("MyCart")));
@@ -57,19 +62,10 @@ export default function App() {
       setUser(JSON.parse(localStorage.getItem("MyUser")));
     }
 
-    async function fetchData() {
-      const result = await fetch("http://localhost:3000/api/productos/", {
-        method: "get",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          Authorization: "Basic " + btoa("devops2021*:devops2021*"),
-          "Content-Type": "application/json",
-        },
-      });
-      const dataNoFilter = await result.json();
-      const data = await dataNoFilter;
-
+     
+     
+      const data = staticdata;
+      console.log(data)
       //// Loop for hide products with no units/////
 
       for (var i2 = 0; i2 < data.length; i2++) {
@@ -106,7 +102,7 @@ export default function App() {
 
       setProducts(data);
       setProductsForFilter(data);
-      //console.log(data)
+      
 
       setCategorias(data.map((producto) => producto.category));
       setSubCategorias(data.map((producto) => producto.subcategory));
@@ -186,11 +182,12 @@ export default function App() {
       setColores(
         data.map((producto) => producto.skus.map((producto) => producto.color))
       );
+     
 
       setLoading1(false);
-    }
-    fetchData();
-    test();
+    
+      test();
+    
   }, [loading1]);
 
   function test() {
