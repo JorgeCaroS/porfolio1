@@ -5,6 +5,9 @@ import Shop from "./Shop";
 import Banner2 from "../images/Banner2.jpg";
 import Banner3 from "../images/Banner3.jpg";
 import Banner4 from "../images/Banner4.jpg";
+import BannerCel1 from "../images/BannerOversize.jpg";
+import BannerCel2 from "../images/BannerPatch.jpg";
+import BannerCel3 from "../images/OverSize2.jpg";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Logo from "../images/logokancan.png";
@@ -285,13 +288,13 @@ export default function Home({
           transitionTime={1000}
         >
           <div className="banner-item1">
-            <img src={"http://localhost:3000/image/BannerOversize.jpg"} />
+            <img src={BannerCel1} />
           </div>
           <div className="banner-item2">
-            <img src={"http://localhost:3000/image/BannerGlam.jpg"} />
+            <img src={BannerCel2} />
           </div>
           <div className="banner-item3">
-            <img src={"http://localhost:3000/image/BannerRock.jpg"} />
+            <img src={BannerCel3} />
           </div>
           
          {/*  <div className="banner-video1">
