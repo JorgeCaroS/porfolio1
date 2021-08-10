@@ -3128,7 +3128,7 @@ animation: flash 1.5s;
   justify-content: center;
 }
 
-.store-details{
+.store-details-desktop{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -3141,6 +3141,35 @@ animation: flash 1.5s;
   color:white;
 
 }
+
+.store-details-mobile{
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 2px 2px 2px 2px gray;
+  width: 60vw;
+  height: 65vh;
+  margin-left: 100px;
+  background-color: rgb(14, 13, 13);
+  color:white;
+
+}
+
+.store-details-mobile-hidden{
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 2px 2px 2px 2px gray;
+  width: 60vw;
+  height: 65vh;
+  margin-left: 100px;
+  background-color: rgb(14, 13, 13);
+  color:white;
+
+}
+
 
 .store-details iframe {
   box-shadow: 4px 4px 4px 4px gray;
@@ -3305,12 +3334,36 @@ animation: flash 1.5s;
     margin-left: 5vw;
   }
 
-  .store-details{
+  .store-details-desktop{
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 2px 2px 2px 2px gray;
+    width: 60vw;
+    height: 65vh;
+    margin-left: 100px;
+    background-color: rgb(14, 13, 13);
+    color:white;
+  
+  }
+
+  .store-details-mobile{
     display: flex;
-    margin-top: 20px; 
-    width: 90vw;
-    margin-left: 10vw;    
-   
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    width: 95vw;
+    z-index: 15;
+    top: 25px;
+    margin-left: 40px;
+    height: 90vh;
+  }
+
+  .store-details-mobile iframe{    
+    width: 85vw;  
+    margin: 0;  
   }
 
   .store-details-data{
@@ -3352,6 +3405,7 @@ animation: flash 1.5s;
    
   }
 
+ 
 
 }
 
@@ -3763,37 +3817,88 @@ animation: flash 1.5s;
   height: 25px;
 }
 
+.store-details-hidden{
+  display: none;
+}
+
 
 @media screen and (max-width: 800px) {
 
+
   .confirmation-content-section{
     display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-  }
-
-  .confirmation-content-section1{
-    display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   width: 90vw;
-   margin-top: 20px;
-  }
-
-  .newsletter-form{
-    width: 70vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
     margin: 0;
   }
 
   .newsletter-form input{
-    width: 70vw;
+    width: 50vw;
+  }
+
+  .confirmation-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
     margin: 0;
+    margin-top: 350px;
+    text-align: center;
+
+  }
+
+  .confirmation-content h2{
+    font-size: 20px;
+
+  }
+
+  .confirmation-content-section1 h2{
+    margin-left:00px;
+  }
+
+  .confirmation-content-section1{
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .store-details{
+    top:0;
+    position: fixed;
+    z-index: 15;
+    height: 92vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .store-details-hidden{
+    display: none;
+  }
+
+  .store-map-close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color:white;
+    height: 50px;
+    width: 150px;
+    margin-bottom: 30px;
+    font-size: 4vw;
   }
 
 
+  
+
+
 }
+
 /******************************* Ract Router Transition ************************/
 
 .fade-appear{

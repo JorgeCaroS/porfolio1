@@ -8,6 +8,7 @@ export default function Shops() {
  
   const { cartClassName, setCartClassName } = useContext(MyContext);  
   const [ storeSelected, setStoreSelected ] = useState("");
+  const [ openMap, setOpenMap ] = useState(true);
 
 
   const tiendas =  [{ciudad:"Cali",tienda:"Kancan CC Unicentro",direccion:"Cra 100 #5-169 Local 327 - 277", telefono:"3154334626", horario1:"Lunes-Viernes : 10:00 AM - 8:00 PM" , horario2:"Sábados : 10:00 AM - 9:00 PM", horario3:"Domingos y Festivos : 11:00AM - 8:00 PM ", map:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.9020831025914!2d-76.54091458472409!3d3.374106352668206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a19643306de5%3A0x3e703ff09b32078c!2sKan%20Can%20Jeans%20Unicentro!5e0!3m2!1ses-419!2sco!4v1628093624309!5m2!1ses-419!2sco"},
@@ -40,12 +41,18 @@ export default function Shops() {
   const ciudadesLista = [...new Set(ciudades)];
 
   function handleStore1(e){
-    console.log(e.target.innerText);
+    
     for(var i = 0 ; i < tiendas.length ; i++ ){
       if(e.target.innerText === tiendas[i].tienda){
          setStoreSelected(tiendas[i])
        }
     }
+    setOpenMap(!openMap);
+  }
+
+
+  function handleMap(){
+    setOpenMap(!openMap);
   }
 
   
@@ -99,7 +106,7 @@ export default function Shops() {
 
 
           </div> 
-          <div className="store-details">           
+          <div className= "store-details-desktop" >           
               <h2>{storeSelected ? storeSelected.tienda : "Selecciona una tienda para ver la información"}</h2>
               <div className="store-details-data">
 
@@ -122,20 +129,37 @@ export default function Shops() {
 
               </div>
               <br></br>
-              <iframe src={storeSelected ? storeSelected.map : "http://localhost:3000/image/Portada1.jpg"} width="90%" height="70%" />
+              <iframe className="store-map"src={storeSelected ? storeSelected.map : "http://localhost:3000/image/Portada1.jpg"} width="90%" height="70%" />            
               <br></br>
-          </div>
-          {/* <div className="stores-section">
-            <div className="store-details">
-            <p>Unicentro</p> 
-            <p>Cra. 100 #5-169 local 193</p> 
-            <p>Telefono 3333333</p>  
-            </div>    
              
-            <br></br>     
-            <br></br>    
-            <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d26793.912775888373!2d-76.54990282705502!3d3.3650955120084545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x8e30a19643306de5%3A0x3e703ff09b32078c!2sKan%20Can%20Jeans%20Unicentro%2C%20Carrera%20100%2C%20Cali%2C%20Valle%20del%20Cauca!3m2!1d3.374101!2d-76.5387264!5e0!3m2!1ses-419!2sco!4v1628085881758!5m2!1ses-419!2sco" width="500" height="400"  allowfullscreen="" loading="lazy"></iframe>
-          </div> */}
+          </div>
+          <div className={openMap ? "store-details-mobile" : "store-details-mobile-hidden"} >           
+              <h2>{storeSelected ? storeSelected.tienda : "Selecciona una tienda para ver la información"}</h2>
+              <div className="store-details-data">
+
+                <div className="store-details-data-block"  id="direccion">
+                <h3>Dirección <span className="material-icons md-dark">location_on</span></h3>
+                <span> {storeSelected ? storeSelected.direccion : null}</span>
+                </div>
+
+                <div className="store-details-data-block" id="telefono">
+                <h3>Teléfono <span className="material-icons md-dark">phone</span></h3> 
+                <span> {storeSelected ? storeSelected.telefono : null}</span>
+                </div>
+                
+                <div className="store-details-data-block"  id="horario">
+                <h3>Horarios de Atención <span className="material-icons md-dark">schedule</span></h3> 
+                <span> {storeSelected ? storeSelected.horario1 : null}</span>
+                <span> {storeSelected ? storeSelected.horario2 : null}</span>
+                <span> {storeSelected ? storeSelected.horario3 : null}</span>
+                </div>
+
+              </div>
+              <br></br>
+              <iframe className="store-map"src={storeSelected ? storeSelected.map : "http://localhost:3000/image/Portada1.jpg"} width="90%" height="70%" />            
+              <br></br>
+              <button className="store-map-close" onClick={handleMap}>Cerrar</button>
+          </div>
           <br></br>
 
           
