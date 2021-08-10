@@ -8,7 +8,7 @@ export default function Shops() {
  
   const { cartClassName, setCartClassName } = useContext(MyContext);  
   const [ storeSelected, setStoreSelected ] = useState("");
-  const [ openMap, setOpenMap ] = useState(true);
+  const [ openMap, setOpenMap ] = useState(false);
 
 
   const tiendas =  [{ciudad:"Cali",tienda:"Kancan CC Unicentro",direccion:"Cra 100 #5-169 Local 327 - 277", telefono:"3154334626", horario1:"Lunes-Viernes : 10:00 AM - 8:00 PM" , horario2:"Sábados : 10:00 AM - 9:00 PM", horario3:"Domingos y Festivos : 11:00AM - 8:00 PM ", map:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.9020831025914!2d-76.54091458472409!3d3.374106352668206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a19643306de5%3A0x3e703ff09b32078c!2sKan%20Can%20Jeans%20Unicentro!5e0!3m2!1ses-419!2sco!4v1628093624309!5m2!1ses-419!2sco"},
